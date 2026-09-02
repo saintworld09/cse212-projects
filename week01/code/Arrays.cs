@@ -8,12 +8,19 @@ public static class Arrays
     /// <returns>array of doubles that are the multiples of the supplied number</returns>
     public static double[] MultiplesOf(double number, int length)
     {
-        // TODO Problem 1 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // Step 1: Create a new array with the requested length.
+        double[] multiples = new double[length];
 
-        return []; // replace this return statement with your own
+        // Step 2: Loop through each position in the array.
+        for (int i = 0; i < length; i++)
+        {
+            // Step 3: Calculate the multiple by multiplying the supplied
+            // number by the position number plus one.
+            multiples[i] = number * (i + 1);
+        }
+
+        // Step 4: Return the completed array containing the multiples.
+        return multiples;
     }
 
     /// <summary>
@@ -25,9 +32,24 @@ public static class Arrays
     /// </summary>
     public static void RotateListRight(List<int> data, int amount)
     {
-        // TODO Problem 2 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // Step 1: Find the position where the list should be split.
+        // For a right rotation, the last 'amount' items move to the front.
+        int splitIndex = data.Count - amount;
+
+        // Step 2: Create a copy of the items that will move to the front.
+        List<int> rightPart = data.GetRange(splitIndex, amount);
+
+        // Step 3: Create a copy of the items that will remain at the back.
+        List<int> leftPart = data.GetRange(0, splitIndex);
+
+        // Step 4: Remove all existing items from the original list.
+        data.Clear();
+
+        // Step 5: Add the right part first because those items need to
+        // appear at the beginning after the rotation.
+        data.AddRange(rightPart);
+
+        // Step 6: Add the left part after the right part.
+        data.AddRange(leftPart);
     }
 }
