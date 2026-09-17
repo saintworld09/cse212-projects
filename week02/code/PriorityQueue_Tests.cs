@@ -9,7 +9,9 @@ public class PriorityQueueTests
     // Scenario: Add several items with different priorities and dequeue them.
     // Expected Result: The item with the highest priority should be returned first,
     // followed by the next highest priority.
-    // Defect(s) Found: Not tested yet.
+    // Defect(s) Found: Initial test failed because Dequeue returned the highest-priority
+    // item without removing it from the queue. Code review also found that the loop
+    // did not check the final item in the queue. Both defects were fixed.
     public void TestPriorityQueue_1()
     {
         var priorityQueue = new PriorityQueue();
@@ -31,7 +33,9 @@ public class PriorityQueueTests
     // Scenario: Add multiple items with the same highest priority and dequeue them.
     // Expected Result: Items with the same priority should be returned in the
     // same order that they were added to the queue.
-    // Defect(s) Found: Not tested yet.
+    // Defect(s) Found: Initial test failed because the priority comparison used >=,
+    // which selected the later item when priorities were equal instead of preserving
+    // FIFO order. The comparison was changed to >.
     public void TestPriorityQueue_2()
     {
         var priorityQueue = new PriorityQueue();
@@ -53,7 +57,8 @@ public class PriorityQueueTests
     // Scenario: Dequeue from an empty priority queue.
     // Expected Result: An InvalidOperationException should be thrown with
     // the message "The queue is empty."
-    // Defect(s) Found: Not tested yet.
+    // Defect(s) Found: Initial test passed. No defect was found because the required
+    // InvalidOperationException and exact error message were already implemented correctly.
     public void TestPriorityQueue_3()
     {
         var priorityQueue = new PriorityQueue();
@@ -67,7 +72,7 @@ public class PriorityQueueTests
     [TestMethod]
     // Scenario: Add an item to the queue and then dequeue it.
     // Expected Result: The item that was added should be returned.
-    // Defect(s) Found: Not tested yet.
+    // Defect(s) Found: Initial test passed. No defect was found.
     public void TestPriorityQueue_4()
     {
         var priorityQueue = new PriorityQueue();
